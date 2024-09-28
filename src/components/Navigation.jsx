@@ -4,10 +4,10 @@ import { ShoppingBasket } from "lucide-react";
 
 function NavigationBar() {
   return (
-    <div>
+    <div className="container">
       <header>
         <Wrapper>
-          <h1>Akatskuki shop</h1>
+          <h1>TOP Shop</h1>
           <HomeShop>
             <Link to={"/"}>Home</Link>
             <Link to={"shop"}>Shop</Link>
@@ -18,9 +18,9 @@ function NavigationBar() {
           </Basket>
         </Wrapper>
       </header>
-      <main>
+      <Main>
         <Outlet />
-      </main>
+      </Main>
     </div>
   );
 }
@@ -31,7 +31,9 @@ const HomeShop = styled.div`
   margin-right: 100px;
   font-size: 32px;
   justify-items: center;
-
+  a {
+    color: white;
+  }
   div {
     &:hover {
       cursor: pointer;
@@ -42,14 +44,28 @@ const HomeShop = styled.div`
 const Basket = styled.div`
   margin-left: 100px;
   margin-right: 12px;
+  a {
+    color: white;
+  }
   &:hover {
     cursor: pointer;
   }
 `;
 
+const Main = styled.div`
+  display: flex;
+  height: 100%;
+  margin: 0;
+`;
+
 const Wrapper = styled.div`
+  h1 {
+    color: white;
+    font-size: 36px;
+  }
   display: flex;
   padding: 36px;
+  background-color: #484646;
 `;
 
 export default NavigationBar;
