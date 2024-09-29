@@ -22,18 +22,41 @@ function Shop() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>A network error was encountered</p>;
   return (
-    <div>
+    <All>
       <h1>Products</h1>
       <Container>
         {allItems.map((item) => (
           <Card key={item.id} item={item} />
         ))}
       </Container>
-    </div>
+    </All>
   );
 }
+
+const All = styled.div`
+  background-color: #f2dfdf;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  h1 {
+    margin: 20px;
+  }
+`;
+
 const Container = styled.div`
-  color: blue;
+  display: grid;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 32px;
+  gap: 32px;
+
+  grid-template-columns: repeat(6, minmax(250px, 1fr));
+
+  img {
+    max-height: 240px;
+    max-width: 200px;
+  }
 `;
 
 export default Shop;
