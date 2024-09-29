@@ -7,17 +7,28 @@ function Basket() {
 
   console.log(itemsInBasket, "from basket");
 
+  // const handleDelete = (i) => {
+  //   const index = itemsInBasket.indexOf(i);
+  //   console.log(itemsInBasket, "before");
+  //   const newArr = itemsInBasket.splice(index, 1);
+  //   console.log(newArr, "after");
+
+  //   setItemsInBasket(newArr);
+  // };
+
   if (itemsInBasket) {
     return (
       <Wrapper>
-        {itemsInBasket.map((item) => (
-          <StyledItem key={item.id}>
-            <img src={item.image} alt="" />
-            <p>{item.title}</p>
-            <p>${item.price}</p>
-            <button>Delete</button>
-          </StyledItem>
-        ))}
+        <Cards>
+          {itemsInBasket.map((item) => (
+            <StyledItem key={item.id}>
+              <img src={item.image} alt="" />
+              <p>{item.title}</p>
+              <p>${item.price}</p>
+              <button onClick={() => handleDelete(item)}>Delete</button>
+            </StyledItem>
+          ))}
+        </Cards>
       </Wrapper>
     );
   } else {
@@ -38,6 +49,12 @@ const StyledItem = styled.div`
     max-height: 140px;
     max-width: 100px;
   }
+`;
+const Cards = styled.div`
+  margin-top: 40px;
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
 `;
 
 const Wrapper = styled.div`
