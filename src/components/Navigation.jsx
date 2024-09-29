@@ -1,11 +1,21 @@
 import styled from "styled-components";
 import { Link, Outlet } from "react-router-dom";
 import { ShoppingBasket } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function NavigationBar() {
-  const [itemsInbasket, setItemsInBasket] = useState([]);
+  const [itemsInbasket, setItemsInBasket] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("items");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
   console.log(itemsInbasket);
+
+  useEffect(() => {
+    // storing input name
+    localStorage.setItem("items", JSON.stringify(itemsInbasket));
+  }, [itemsInbasket]);
   return (
     <div className="container">
       <header>
