@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 
 function Basket() {
-  const [itemsInBasket, setItemsInBasket] = useState(null);
+  const [itemsInBasket, setItemsInBasket] = useOutletContext();
+
+  console.log(itemsInBasket, "from basket");
+
   if (itemsInBasket) {
     return (
       <div>
@@ -11,7 +15,7 @@ function Basket() {
   } else {
     return (
       <div>
-        <h1>hello form Basket</h1>
+        <h1>Add something into the Bakset and it will be shown here</h1>
       </div>
     );
   }

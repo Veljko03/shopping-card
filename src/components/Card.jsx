@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 
 function Card({ item }) {
   const [numOfItems, setNumOfItems] = useState(0);
+  const [itemsInBasket, setItemsInBasket] = useOutletContext();
+
+  const handleAdding = (item) => {
+    setItemsInBasket([...itemsInBasket, item]);
+  };
 
   const handleMinus = () => {
     if (numOfItems >= 1) {
@@ -24,7 +30,7 @@ function Card({ item }) {
         {numOfItems}
         <button onClick={handlePlus}>+</button>
       </NumOfItemsStyle>
-      {/* <button onClick={handleAdding(numOfItems, item)}>Add</button> */}
+      <button onClick={() => handleAdding(item)}>Add</button>
     </Container>
   );
 }

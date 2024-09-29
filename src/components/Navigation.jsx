@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import { Link, Outlet } from "react-router-dom";
 import { ShoppingBasket } from "lucide-react";
+import { useState } from "react";
 
 function NavigationBar() {
+  const [itemsInbasket, setItemsInBasket] = useState([]);
+  console.log(itemsInbasket);
   return (
     <div className="container">
       <header>
@@ -19,7 +22,7 @@ function NavigationBar() {
         </Wrapper>
       </header>
       <Main>
-        <Outlet />
+        <Outlet context={[itemsInbasket, setItemsInBasket]} />
       </Main>
     </div>
   );
