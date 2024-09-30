@@ -2,20 +2,25 @@ import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 
-function Card({ item }) {
+function Card({ item, sendDataToParent }) {
   const [numOfItems, setNumOfItems] = useState(0);
-  const [itemsInBasket, setItemsInBasket] = useOutletContext();
+  const [itemsInBasket, setItemsInBasket, ,] = useOutletContext();
+
+  console.log(itemsInBasket, "frim card component");
 
   const handleAdding = (item) => {
     if (numOfItems >= 1) {
-      // item.numOfItems += numOfItems;
       const check = itemsInBasket.includes(item);
       console.log(check);
+      console.log(item, "this is item");
       if (check) {
         alert("do something");
       } else {
+        //item.numOfItems += numOfItems;
+
         setItemsInBasket([...itemsInBasket, item]);
         setNumOfItems(0);
+        alert("item added");
       }
     } else {
       alert("Number of items must be at least 1!");

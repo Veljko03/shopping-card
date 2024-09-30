@@ -3,9 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 
 function Basket() {
-  const [itemsInBasket, setItemsInBasket] = useOutletContext();
-  const [num, setNum] = useState(0);
-  console.log(itemsInBasket, "from basket");
+  const [itemsInBasket, setItemsInBasket, ,] = useOutletContext();
   let length = itemsInBasket.length;
 
   const handleDelete = (i) => {
@@ -18,6 +16,17 @@ function Basket() {
 
     setItemsInBasket(newArr);
   };
+
+  console.log(itemsInBasket, "from basket items");
+
+  const allPRices = itemsInBasket.map((item) => item.price);
+
+  let sum = 0;
+  for (let i = 0; i < allPRices.length; i++) {
+    sum += allPRices[i];
+  }
+
+  console.log(sum);
 
   if (length != 0) {
     return (
@@ -32,6 +41,7 @@ function Basket() {
             </StyledItem>
           ))}
         </Cards>
+        <h1>Total price ${sum}</h1>
       </Wrapper>
     );
   } else {

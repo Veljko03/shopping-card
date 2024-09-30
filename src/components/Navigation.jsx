@@ -4,19 +4,16 @@ import { ShoppingBasket } from "lucide-react";
 import { useState, useEffect } from "react";
 
 function NavigationBar() {
-  const [itemsInbasket, setItemsInBasket] = useState(() => {
-    // getting stored value
-    const saved = localStorage.getItem("items");
-    const initialValue = JSON.parse(saved);
-    return initialValue || [];
-  });
+  const [itemsInbasket, setItemsInBasket] = useState([]);
 
   const count = itemsInbasket.length;
 
   useEffect(() => {
-    // storing input name
-    localStorage.setItem("items", JSON.stringify(itemsInbasket));
-  }, [itemsInbasket]);
+    const saved = localStorage.getItem("items");
+    const initialValue = JSON.parse(saved);
+
+    setItemsInBasket(initialValue || []);
+  }, []);
   return (
     <div className="container">
       <header>

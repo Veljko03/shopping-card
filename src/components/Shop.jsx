@@ -18,7 +18,6 @@ function Shop() {
       .finally(() => setLoading(false));
   }, []);
 
-  console.log(allItems);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>A network error was encountered</p>;
   return (
@@ -38,7 +37,7 @@ const All = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 100%;
+
   h1 {
     margin: 20px;
   }
@@ -49,6 +48,7 @@ const Container = styled.div`
   margin-left: 60px;
   margin-right: 60px;
   margin-top: 32px;
+  margin-bottom: 40px;
   gap: 32px;
 
   grid-template-columns: repeat(6, minmax(250px, 1fr));
