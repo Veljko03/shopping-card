@@ -4,19 +4,22 @@ import styled from "styled-components";
 
 function Basket() {
   const [itemsInBasket, setItemsInBasket] = useOutletContext();
-
+  const [num, setNum] = useState(0);
   console.log(itemsInBasket, "from basket");
+  let length = itemsInBasket.length;
 
-  // const handleDelete = (i) => {
-  //   const index = itemsInBasket.indexOf(i);
-  //   console.log(itemsInBasket, "before");
-  //   const newArr = itemsInBasket.splice(index, 1);
-  //   console.log(newArr, "after");
+  const handleDelete = (i) => {
+    const index = itemsInBasket.indexOf(i);
+    console.log(index, "index");
 
-  //   setItemsInBasket(newArr);
-  // };
+    console.log(itemsInBasket, "before");
+    const newArr = itemsInBasket.filter((item) => item.id !== i.id);
+    console.log(newArr, "after");
 
-  if (itemsInBasket) {
+    setItemsInBasket(newArr);
+  };
+
+  if (length != 0) {
     return (
       <Wrapper>
         <Cards>

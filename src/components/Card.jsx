@@ -7,7 +7,19 @@ function Card({ item }) {
   const [itemsInBasket, setItemsInBasket] = useOutletContext();
 
   const handleAdding = (item) => {
-    setItemsInBasket([...itemsInBasket, item]);
+    if (numOfItems >= 1) {
+      // item.numOfItems += numOfItems;
+      const check = itemsInBasket.includes(item);
+      console.log(check);
+      if (check) {
+        alert("do something");
+      } else {
+        setItemsInBasket([...itemsInBasket, item]);
+        setNumOfItems(0);
+      }
+    } else {
+      alert("Number of items must be at least 1!");
+    }
   };
 
   const handleMinus = () => {

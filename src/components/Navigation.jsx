@@ -10,7 +10,8 @@ function NavigationBar() {
     const initialValue = JSON.parse(saved);
     return initialValue || [];
   });
-  console.log(itemsInbasket);
+
+  const count = itemsInbasket.length;
 
   useEffect(() => {
     // storing input name
@@ -27,7 +28,14 @@ function NavigationBar() {
           </HomeShop>
 
           <Basket>
-            <Link to={"basket"}>{<ShoppingBasket size={48} />}</Link>
+            {count >= 1 ? (
+              <Link to={"basket"}>
+                {<ShoppingBasket size={48} />}
+                {count}
+              </Link>
+            ) : (
+              <Link to={"basket"}>{<ShoppingBasket size={48} />}</Link>
+            )}
           </Basket>
         </Wrapper>
       </header>
