@@ -37,6 +37,7 @@ const All = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  height: 1400px;
 
   h1 {
     margin: 20px;

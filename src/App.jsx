@@ -17,8 +17,10 @@ function App() {
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-
+  margin-top: 40px;
   align-items: center;
+
+  width: 100%;
 `;
 
 export default App;
