@@ -15,9 +15,13 @@ function Card({ item, sendDataToParent }) {
       const check = filteredItemsInBasket.includes(item.id);
 
       if (check) {
-        alert("do something");
+        item.numOfItems += numOfItems;
+        setNumOfItems(0);
+        alert("item updated");
       } else {
-        //item.numOfItems += numOfItems;
+        if (!item.numOfItems) {
+          item.numOfItems = numOfItems;
+        }
 
         setItemsInBasket([...itemsInBasket, item]);
         setNumOfItems(0);
