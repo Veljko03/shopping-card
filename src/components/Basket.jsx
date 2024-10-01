@@ -17,8 +17,6 @@ function Basket() {
     setItemsInBasket(newArr);
   };
 
-  console.log(itemsInBasket, "from basket items");
-
   const allPRices = itemsInBasket.map((item) => item.price);
 
   let sum = 0;
