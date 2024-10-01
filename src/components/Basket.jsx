@@ -3,16 +3,13 @@ import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 
 function Basket() {
-  const [itemsInBasket, setItemsInBasket, ,] = useOutletContext();
+  const [itemsInBasket, setItemsInBasket] = useOutletContext();
   let length = itemsInBasket.length;
 
   const handleDelete = (i) => {
     const index = itemsInBasket.indexOf(i);
-    console.log(index, "index");
 
-    console.log(itemsInBasket, "before");
     const newArr = itemsInBasket.filter((item) => item.id !== i.id);
-    console.log(newArr, "after");
 
     setItemsInBasket(newArr);
   };
@@ -23,8 +20,22 @@ function Basket() {
   for (let i = 0; i < allPRices.length; i++) {
     sum += allPRices[i];
   }
+  const handleMinus = (item) => {
+    const index = itemsInBasket.indexOf(item);
+    const copy = [...itemsInBasket];
+    copy[index].numOfItems -= 1;
+    console.log(copy, "copy");
+    console.log(itemsInBasket, "before");
 
-  console.log(sum);
+    setItemsInBasket(copy);
+  };
+
+  const handlePlus = (item) => {
+    const index = itemsInBasket.indexOf(item);
+    const copy = [...itemsInBasket];
+    copy[index].numOfItems += 1;
+    setItemsInBasket(copy);
+  };
 
   if (length != 0) {
     return (
@@ -35,6 +46,11 @@ function Basket() {
               <img src={item.image} alt="" />
               <p>{item.title}</p>
               <p>${item.price}</p>
+              <NumOfItemsStyle>
+                <button onClick={() => handleMinus(item)}>-</button>
+                {item.numOfItems}
+                <button onClick={() => handlePlus(item)}>+</button>
+              </NumOfItemsStyle>
               <button onClick={() => handleDelete(item)}>Delete</button>
             </StyledItem>
           ))}
@@ -50,7 +66,21 @@ function Basket() {
     );
   }
 }
+const NumOfItemsStyle = styled.div`
+  display: flex;
+  gap: 8px;
+  border-radius: 8px;
+  font-size: 24px;
 
+  button {
+    border-radius: 8px;
+    font-size: 24px;
+    border: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`;
 const StyledItem = styled.div`
   display: flex;
   gap: 20px;

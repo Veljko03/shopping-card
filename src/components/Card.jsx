@@ -6,11 +6,9 @@ function Card({ item, sendDataToParent }) {
   const [numOfItems, setNumOfItems] = useState(0);
   const [itemsInBasket, setItemsInBasket, ,] = useOutletContext();
 
-  console.log(itemsInBasket);
   const handleAdding = (item) => {
     if (numOfItems >= 1) {
       const filteredItemsInBasket = itemsInBasket.map((item) => item.id);
-      console.log(filteredItemsInBasket, ",this is filtered");
 
       const check = filteredItemsInBasket.includes(item.id);
 
