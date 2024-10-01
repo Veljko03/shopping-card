@@ -14,20 +14,16 @@ function Basket() {
     setItemsInBasket(newArr);
   };
 
-  const allPRices = itemsInBasket.map((item) => item.price);
-
-  let sum = 0;
-  for (let i = 0; i < allPRices.length; i++) {
-    sum += allPRices[i];
-  }
   const handleMinus = (item) => {
-    const index = itemsInBasket.indexOf(item);
-    const copy = [...itemsInBasket];
-    copy[index].numOfItems -= 1;
-    console.log(copy, "copy");
-    console.log(itemsInBasket, "before");
+    if (item.numOfItems > 1) {
+      const index = itemsInBasket.indexOf(item);
+      const copy = [...itemsInBasket];
+      copy[index].numOfItems -= 1;
+      console.log(copy, "copy");
+      console.log(itemsInBasket, "before");
 
-    setItemsInBasket(copy);
+      setItemsInBasket(copy);
+    }
   };
 
   const handlePlus = (item) => {
@@ -37,6 +33,17 @@ function Basket() {
     setItemsInBasket(copy);
   };
 
+  const PricesAndItems = itemsInBasket.map(({ price, numOfItems }) => ({
+    price,
+    numOfItems,
+  }));
+
+  let sum = 0;
+
+  for (let i = 0; i < PricesAndItems.length; i++) {
+    sum = sum + PricesAndItems[i].price * PricesAndItems[i].numOfItems;
+  }
+  sum = Math.round(sum * 100) / 100;
   if (length != 0) {
     return (
       <Wrapper>
