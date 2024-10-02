@@ -10,10 +10,20 @@ function NavigationBar() {
 
   useEffect(() => {
     const saved = localStorage.getItem("items");
+    console.log("saved", saved);
     const initialValue = JSON.parse(saved);
-
-    setItemsInBasket(initialValue || []);
+    console.log(initialValue);
+    if (initialValue) {
+      setItemsInBasket(initialValue);
+    }
   }, []);
+
+  useEffect(() => {
+    //without this if statment after refresh items would be seeted to the []....
+    if (itemsInbasket.length > 0) {
+      localStorage.setItem("items", JSON.stringify(itemsInbasket));
+    }
+  }, [itemsInbasket]);
   return (
     <div className="container">
       <header>
